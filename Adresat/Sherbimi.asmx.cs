@@ -5,9 +5,16 @@ using System.Web;
 using System.Web.Services;
 using System.Net.Http;
 using System.Xml;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Text;
+using System.Security.Cryptography;
+using System.Numerics;
 
 namespace Adresat
 {
+  
     /// <summary>
     /// Summary description for Sherbimi
     /// </summary>
@@ -19,6 +26,59 @@ namespace Adresat
     public class Sherbimi : System.Web.Services.WebService
     {
 
+        SqlConnection objKonektimi = new SqlConnection("server=localhost;user=Perdoruesi;database=dbAdresat;password=Ladi1234@;");
+
+
+        [WebMethod]
+        public string merrCred(string Username)
+        {
+            string dalja = "";
+            string query = "Select Hash,Salt from tblUsers Where Username='" + Username+"'";
+            SqlCommand cmd = new SqlCommand(query, objKonektimi);
+
+            try
+            {
+                objKonektimi.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if(dr.HasRows)
+                {
+                    dr.Read();
+                    dalja = dr[0].ToString() + dr[1].ToString();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+
+                dalja= ex.Message;
+            }
+
+            return dalja;
+
+        }
+        
+        [WebMethod]
+        public string shtoUser()
+        {
+            try
+            {
+                objKonektimi.Open();
+                string salt = gjenerosalt();
+                string query = "Insert into tblUsers (Username,Hash,Salt,Email) VALUES('Lavdrim','" + gjejhash(gjejhash("Ladi1234") + salt) + "','" + salt + "','lavdishala@hotmail.com');";
+                SqlCommand cmd = new SqlCommand(query, objKonektimi);
+                cmd.ExecuteNonQuery();
+
+                return "U insertua me sukses";
+
+            }
+            catch (SqlException ex)
+            {
+                return ex.Message;
+            }
+
+        }
+      
+        
         [WebMethod]
         public string ktheAdresen(string lat, string lng)
         {
@@ -27,5 +87,31 @@ namespace Adresat
             XmlNode nod1 = doc.SelectSingleNode("/reversegeocode/result");
             return nod1.InnerText;
         }
+       
+        
+        private string gjenerosalt()
+        {
+            Random objrandom = new Random();
+            string rez = "";
+            for (int i = 0; i < 4; i++)
+            {
+                int a = objrandom.Next(33, 125);
+                rez += Convert.ToChar(a).ToString();
+            }
+            return "haha";
+        }
+
+        private string gjejhash(string h)
+        {
+            SHA1CryptoServiceProvider sha1 = new SHA1CryptoServiceProvider();
+            byte[] bytes = new byte[20];
+            bytes = Encoding.Unicode.GetBytes(h);
+            bytes = sha1.ComputeHash(bytes);
+            
+            h = BitConverter.ToString(bytes).Replace("-", "");
+            return h;
+        }
+
+    
     }
 }
