@@ -30,6 +30,51 @@ namespace Adresat
 
 
         [WebMethod]
+        public string validoUsername(string Username, string Lloji)
+        {
+            string dalja = "";
+            if (Lloji == "Individ")
+            {
+                string query = "Select Username From tblUsers Where Username='" + Username + "'";
+                SqlCommand cmd = new SqlCommand(query, objKonektimi);
+
+                try
+                {
+                    objKonektimi.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        dalja = "True";
+                    }
+                    else
+                    {
+                        dalja = "False";
+                    }
+                    dr.Close();
+                    query = "Select Emri From tblRegjistriCivil Where NrPersonal=" + Username;
+                    cmd = new SqlCommand(query, objKonektimi);
+                     dr = cmd.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        dalja += ",True";
+                    }
+                    else
+                    {
+                        dalja += ",False";
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    dalja = ex.Message;
+                }
+
+            }
+            return dalja;
+            
+        }
+
+        [WebMethod]
         public string lexoRegjistrinCivil(string NrPersonal)
         {
 
@@ -92,8 +137,7 @@ namespace Adresat
             try
             {
                 objKonektimi.Open();
-                string salt = gjenerosalt();
-                string query = "Insert into tblUsers (Username,Hash,Salt,Email) VALUES('"+Username+"','" + Hash + "','" + salt + "','"+Email+"');";
+                string query = "Insert into tblUsers (Username,Hash,Salt,Email) VALUES('"+Username+"','" + Hash + "','" + Salt + "','"+Email+"');";
                 SqlCommand cmd = new SqlCommand(query, objKonektimi);
                 cmd.ExecuteNonQuery();
 
