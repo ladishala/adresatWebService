@@ -2,4 +2,3 @@ c:\users\lavderim shala\documents\visual studio 2012\Projects\Adresat\Adresat\bi
 c:\users\lavderim shala\documents\visual studio 2012\Projects\Adresat\Adresat\bin\Adresat.pdb
 c:\users\lavderim shala\documents\visual studio 2012\Projects\Adresat\Adresat\obj\Release\Adresat.dll
 c:\users\lavderim shala\documents\visual studio 2012\Projects\Adresat\Adresat\obj\Release\Adresat.pdb
-C:\Users\Lavderim Shala\documents\visual studio 2012\Projects\Adresat\Adresat\bin\BouncyCastle.Crypto.dll

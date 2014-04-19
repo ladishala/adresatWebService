@@ -58,13 +58,13 @@ namespace Adresat
         }
         
         [WebMethod]
-        public string shtoUser()
+        public string shtoUser(string Username,string Hash,string Salt,string Email)
         {
             try
             {
                 objKonektimi.Open();
                 string salt = gjenerosalt();
-                string query = "Insert into tblUsers (Username,Hash,Salt,Email) VALUES('Lavdrim','" + gjejhash(gjejhash("Ladi1234") + salt) + "','" + salt + "','lavdishala@hotmail.com');";
+                string query = "Insert into tblUsers (Username,Hash,Salt,Email) VALUES('"+Username+",'" + Hash + "','" + salt + "','"+Email+"');";
                 SqlCommand cmd = new SqlCommand(query, objKonektimi);
                 cmd.ExecuteNonQuery();
 
@@ -87,8 +87,8 @@ namespace Adresat
             XmlNode nod1 = doc.SelectSingleNode("/reversegeocode/result");
             return nod1.InnerText;
         }
-       
-        
+
+
         private string gjenerosalt()
         {
             Random objrandom = new Random();
@@ -98,18 +98,15 @@ namespace Adresat
                 int a = objrandom.Next(33, 125);
                 rez += Convert.ToChar(a).ToString();
             }
-            return "haha";
+            return rez;
         }
 
-        private string gjejhash(string h)
+        private string gjejhash(string s)
         {
-            SHA1CryptoServiceProvider sha1 = new SHA1CryptoServiceProvider();
-            byte[] bytes = new byte[20];
-            bytes = Encoding.Unicode.GetBytes(h);
-            bytes = sha1.ComputeHash(bytes);
-            
-            h = BitConverter.ToString(bytes).Replace("-", "");
-            return h;
+            HashAlgorithm Hasher = new SHA1CryptoServiceProvider();
+            byte[] strBytes = Encoding.UTF8.GetBytes(s);
+            byte[] strHash = Hasher.ComputeHash(strBytes);
+            return BitConverter.ToString(strHash).Replace("-", "").ToLowerInvariant().Trim();
         }
 
     
