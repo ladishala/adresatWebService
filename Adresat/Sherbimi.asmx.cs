@@ -30,6 +30,35 @@ namespace Adresat
 
 
         [WebMethod]
+        public string lexoRegjistrinCivil(string NrPersonal)
+        {
+
+            string dalja = "";
+            string query = "Select Emri,Mbiemri,DataLindjes,VendiLindjes from tblRegjistriCivil Where NrPersonal=" + NrPersonal + "";
+            SqlCommand cmd = new SqlCommand(query, objKonektimi);
+
+            try
+            {
+                objKonektimi.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    dr.Read();
+                    dalja = dr[0].ToString() + " " + dr[1].ToString() + "DataLindjes=>" + dr[2].ToString()+"VendiLindjes=>"+dr[3].ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                dalja = ex.Message;
+            }
+
+            return dalja;
+
+        }
+
+        [WebMethod]
         public string merrCred(string Username)
         {
             string dalja = "";
@@ -64,7 +93,7 @@ namespace Adresat
             {
                 objKonektimi.Open();
                 string salt = gjenerosalt();
-                string query = "Insert into tblUsers (Username,Hash,Salt,Email) VALUES('"+Username+",'" + Hash + "','" + salt + "','"+Email+"');";
+                string query = "Insert into tblUsers (Username,Hash,Salt,Email) VALUES('"+Username+"','" + Hash + "','" + salt + "','"+Email+"');";
                 SqlCommand cmd = new SqlCommand(query, objKonektimi);
                 cmd.ExecuteNonQuery();
 

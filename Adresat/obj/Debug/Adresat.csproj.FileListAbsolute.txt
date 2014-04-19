@@ -1,4 +1,3 @@
-c:\users\lavderim shala\documents\visual studio 2012\Projects\Adresat\Adresat\obj\Debug\Adresat.csprojResolveAssemblyReference.cache
 c:\users\lavderim shala\documents\visual studio 2012\Projects\Adresat\Adresat\bin\Adresat.dll
 c:\users\lavderim shala\documents\visual studio 2012\Projects\Adresat\Adresat\bin\Adresat.pdb
 c:\users\lavderim shala\documents\visual studio 2012\Projects\Adresat\Adresat\obj\Debug\Adresat.dll
