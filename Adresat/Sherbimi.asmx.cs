@@ -27,17 +27,38 @@ namespace Adresat
     {
 
         SqlConnection objKonektimi = new SqlConnection("server=localhost;user=Perdoruesi;database=dbAdresat;password=Ladi1234@;");
-
-
+        RegjistriCivil.SherbimiSoapClient objRegjistriCivil = new RegjistriCivil.SherbimiSoapClient();
+        Arbk.Sherbimi_ArbkSoapClient objArbk = new Arbk.Sherbimi_ArbkSoapClient();
+       
+        
+        [WebMethod]
+        public string lexoArbk(string NrBiznesit)
+        {
+            string dalja = "";
+            string Arbk = objArbk.lexoArbk(NrBiznesit);
+            if (Arbk != "")
+            {
+                int emriLength = Arbk.IndexOf("NrPersonal=>");
+                string Emri = Arbk.Substring(0, emriLength);
+                int nrLength = Arbk.IndexOf("Veprimtaria=>") - Arbk.IndexOf("NrPersonal=>") - 12;
+                string NrPersonali = Arbk.Substring(Arbk.IndexOf("NrPersonal=>") + 12, nrLength);
+                string Veprimtaria = Arbk.Substring(Arbk.IndexOf("Veprimtaria=>") + 13);
+                string RegjistriCivil = objRegjistriCivil.lexoRegjistrinCivil(NrPersonali);
+                if (RegjistriCivil != "")
+                {
+                    string Pronari = RegjistriCivil.Substring(0, RegjistriCivil.IndexOf("DataLindjes=>"));
+                    dalja = Emri + "Pronari=>" + Pronari + "Veprimtaria=>" + Veprimtaria;
+                }
+            }
+            return dalja;
+        }
+        
         [WebMethod]
         public string validoUsername(string Username, string Lloji)
         {
-            string dalja = "";
-            if (Lloji == "Individ")
-            {
-                string query = "Select Username From tblUsers Where Username='" + Username + "'";
-                SqlCommand cmd = new SqlCommand(query, objKonektimi);
-
+             string query = "Select Username From tblUsers Where Username='" + Username + "'";
+             SqlCommand cmd = new SqlCommand(query, objKonektimi);
+             string dalja="";
                 try
                 {
                     objKonektimi.Open();
@@ -50,56 +71,32 @@ namespace Adresat
                     {
                         dalja = "False";
                     }
-                    dr.Close();
-                    query = "Select Emri From tblRegjistriCivil Where NrPersonal=" + Username;
-                    cmd = new SqlCommand(query, objKonektimi);
-                     dr = cmd.ExecuteReader();
-                    if (dr.HasRows)
-                    {
-                        dalja += ",True";
-                    }
-                    else
-                    {
-                        dalja += ",False";
-                    }
                 }
-                catch (Exception ex)
+           catch(Exception e)
                 {
-
-                    dalja = ex.Message;
+                dalja=e.Message;
                 }
-
+            finally
+                {
+                    objKonektimi.Close();
+                }
+            if (Lloji == "Individ")
+            {
+                dalja += objRegjistriCivil.validoNrPersonal(Username);
             }
+            else if (Lloji == "Biznes")
+            {
+                dalja += objArbk.validoNrBiznesit(Username);
+            }
+
             return dalja;
-            
         }
 
         [WebMethod]
         public string lexoRegjistrinCivil(string NrPersonal)
         {
 
-            string dalja = "";
-            string query = "Select Emri,Mbiemri,DataLindjes,VendiLindjes from tblRegjistriCivil Where NrPersonal=" + NrPersonal + "";
-            SqlCommand cmd = new SqlCommand(query, objKonektimi);
-
-            try
-            {
-                objKonektimi.Open();
-                SqlDataReader dr = cmd.ExecuteReader();
-                if (dr.HasRows)
-                {
-                    dr.Read();
-                    dalja = dr[0].ToString() + " " + dr[1].ToString() + "DataLindjes=>" + dr[2].ToString()+"VendiLindjes=>"+dr[3].ToString();
-                }
-
-            }
-            catch (Exception ex)
-            {
-
-                dalja = ex.Message;
-            }
-
-            return dalja;
+            return objRegjistriCivil.lexoRegjistrinCivil(NrPersonal);
 
         }
 
@@ -117,7 +114,7 @@ namespace Adresat
                 if(dr.HasRows)
                 {
                     dr.Read();
-                    dalja = dr[0].ToString() + dr[1].ToString();
+                    dalja = dr[0].ToString() + dr[1].ToString() + "OK"; ;
                 }
                 
             }
@@ -126,7 +123,10 @@ namespace Adresat
 
                 dalja= ex.Message;
             }
-
+            finally
+            {
+                objKonektimi.Close();
+            }
             return dalja;
 
         }
@@ -148,7 +148,10 @@ namespace Adresat
             {
                 return ex.Message;
             }
-
+            finally
+            {
+                objKonektimi.Close();
+            }
         }
       
         
