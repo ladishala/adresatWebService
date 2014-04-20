@@ -29,7 +29,13 @@ namespace Adresat
         SqlConnection objKonektimi = new SqlConnection("server=localhost;user=Perdoruesi;database=dbAdresat;password=Ladi1234@;");
         RegjistriCivil.SherbimiSoapClient objRegjistriCivil = new RegjistriCivil.SherbimiSoapClient();
         Arbk.Sherbimi_ArbkSoapClient objArbk = new Arbk.Sherbimi_ArbkSoapClient();
-       
+        Institucionet.Sherbimi_InstitucionetSoapClient objInstitucionet = new Institucionet.Sherbimi_InstitucionetSoapClient();
+
+        [WebMethod]
+        public string lexoInstitucionet(string NrInstitucionit)
+        {
+            return objInstitucionet.lexoInstitucionet(NrInstitucionit);
+        }
         
         [WebMethod]
         public string lexoArbk(string NrBiznesit)
@@ -56,7 +62,7 @@ namespace Adresat
         [WebMethod]
         public string validoUsername(string Username, string Lloji)
         {
-             string query = "Select Username From tblUsers Where Username='" + Username + "'";
+            string query = "Select Username From tblUsers Where Username='" + trajtosqlinject(Username) + "'";
              SqlCommand cmd = new SqlCommand(query, objKonektimi);
              string dalja="";
                 try
@@ -88,7 +94,10 @@ namespace Adresat
             {
                 dalja += objArbk.validoNrBiznesit(Username);
             }
-
+            else if (Lloji == "Institucion")
+            {
+                dalja += objInstitucionet.validoNrInstitucionit(Username);
+            }
             return dalja;
         }
 
@@ -104,7 +113,7 @@ namespace Adresat
         public string merrCred(string Username)
         {
             string dalja = "";
-            string query = "Select Hash,Salt from tblUsers Where Username='" + Username+"'";
+            string query = "Select Hash,Salt from tblUsers Where Username='" + trajtosqlinject(Username) + "'";
             SqlCommand cmd = new SqlCommand(query, objKonektimi);
 
             try
@@ -137,7 +146,7 @@ namespace Adresat
             try
             {
                 objKonektimi.Open();
-                string query = "Insert into tblUsers (Username,Hash,Salt,Email) VALUES('"+Username+"','" + Hash + "','" + Salt + "','"+Email+"');";
+                string query = "Insert into tblUsers (Username,Hash,Salt,Email) VALUES('"+trajtosqlinject(Username)+"','" + Hash + "','" + Salt + "','"+trajtosqlinject(Email)+"');";
                 SqlCommand cmd = new SqlCommand(query, objKonektimi);
                 cmd.ExecuteNonQuery();
 
@@ -183,6 +192,20 @@ namespace Adresat
             byte[] strBytes = Encoding.UTF8.GetBytes(s);
             byte[] strHash = Hasher.ComputeHash(strBytes);
             return BitConverter.ToString(strHash).Replace("-", "").ToLowerInvariant().Trim();
+        }
+
+        private string trajtosqlinject(string s)
+        {
+            char[] vargu = s.ToCharArray();
+            string stringu = "";
+            for (int i = 0; i < vargu.Length; i++)
+            {
+                if (vargu[i].ToString() != "'" && vargu[i].ToString() != ";")
+                {
+                    stringu += vargu[i].ToString();
+                }
+            }
+            return stringu;
         }
 
     

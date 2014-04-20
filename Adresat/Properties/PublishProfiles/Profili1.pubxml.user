@@ -11,7 +11,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Adresat.dll">
-      <publishTime>04/20/2014 17:09:50</publishTime>
+      <publishTime>04/21/2014 01:10:27</publishTime>
     </File>
     <File Include="bin/BouncyCastle.Crypto.dll">
       <publishTime>04/07/2011 02:32:32</publishTime>
@@ -21,6 +21,27 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Service References/Arbk/Adresat.Arbk.validoNrBiznesitResponse.datasource">
       <publishTime>04/20/2014 15:43:44</publishTime>
+    </File>
+    <File Include="Service References/Institucionet/Adresat.Institucionet.lexoInstitucionetResponse.datasource">
+      <publishTime>04/21/2014 00:02:35</publishTime>
+    </File>
+    <File Include="Service References/Institucionet/Adresat.Institucionet.validoNrInstitucionitResponse.datasource">
+      <publishTime>04/21/2014 00:02:35</publishTime>
+    </File>
+    <File Include="Service References/Institucionet/configuration.svcinfo">
+      <publishTime>04/21/2014 00:02:34</publishTime>
+    </File>
+    <File Include="Service References/Institucionet/configuration91.svcinfo">
+      <publishTime>04/21/2014 00:02:34</publishTime>
+    </File>
+    <File Include="Service References/Institucionet/Reference.svcmap">
+      <publishTime>04/21/2014 00:02:34</publishTime>
+    </File>
+    <File Include="Service References/Institucionet/Sherbimi_Institucionet.disco">
+      <publishTime>04/21/2014 00:02:34</publishTime>
+    </File>
+    <File Include="Service References/Institucionet/Sherbimi_Institucionet.wsdl">
+      <publishTime>04/21/2014 00:02:34</publishTime>
     </File>
     <File Include="Service References/RegjistriCivil/Adresat.RegjistriCivil.lexoRegjistrinCivilResponse.datasource">
       <publishTime>04/20/2014 15:59:19</publishTime>
@@ -32,7 +53,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/18/2014 01:25:38</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/20/2014 17:09:50</publishTime>
+      <publishTime>04/21/2014 01:10:27</publishTime>
     </File>
   </ItemGroup>
 </Project>
