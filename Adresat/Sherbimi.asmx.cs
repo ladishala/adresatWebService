@@ -32,6 +32,117 @@ namespace Adresat
         Institucionet.Sherbimi_InstitucionetSoapClient objInstitucionet = new Institucionet.Sherbimi_InstitucionetSoapClient();
 
         [WebMethod]
+        public string azhuroAdresen(string PerdoruesiID, string Lat, string Lng, string Numri)
+        {
+            try
+            {
+                objKonektimi.Open();
+                string query = "Update tblAdresat Set Lat='" + Lat + "', Lng='" + Lng + "', Numri='" + Numri + "' Where PerdoruesiID=" + PerdoruesiID;
+                SqlCommand cmd = new SqlCommand(query, objKonektimi);
+                cmd.ExecuteNonQuery();
+
+                return "U insertua me sukses";
+
+            }
+            catch (SqlException ex)
+            {
+                return ex.Message;
+            }
+            finally
+            {
+                objKonektimi.Close();
+            }
+
+        }
+
+        [WebMethod]
+        public string lexoAdresen(string PerdoruesiID)
+        {
+            try
+            {
+                objKonektimi.Open();
+                string query = "Select Lat,Lng,Numri from tblAdresat Where PerdoruesiID=" + PerdoruesiID;
+                SqlCommand cmd = new SqlCommand(query, objKonektimi);
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                if (dr.HasRows)
+                {
+                    dr.Read();
+                    return dr[0].ToString()+"Lng=>"+dr[1].ToString()+"Numri=>"+dr[2].ToString();
+                }
+                else
+                {
+                    return "Error";
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                return ex.Message;
+
+            }
+            finally
+            {
+                objKonektimi.Close();
+            }
+
+        }
+        
+        [WebMethod]
+        public string validoRegjistrimin(string PerdoruesiID)
+        {
+            try
+            {
+                objKonektimi.Open();
+                string query = "Select * from tblAdresat Where PerdoruesiID="+PerdoruesiID;
+                SqlCommand cmd = new SqlCommand(query, objKonektimi);
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                if (dr.HasRows)
+                {
+                    return "True";
+                }
+                else
+                {
+                    return "False";
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                return ex.Message;
+                
+            }
+            finally
+            {
+                objKonektimi.Close();
+            }
+        }
+       
+        [WebMethod]
+        public string shtoAdrese(string PerdoruesiID, string Lat, string Lng, string Numri)
+        {
+            try
+            {
+                objKonektimi.Open();
+                string query = "Insert into tblAdresat (PerdoruesiID,Lat,Lng,Numri) VALUES('" + PerdoruesiID + "','" + Lat + "','" + Lng + "','" + trajtosqlinject(Numri) + "');";
+                SqlCommand cmd = new SqlCommand(query, objKonektimi);
+                cmd.ExecuteNonQuery();
+
+                return "U insertua me sukses";
+
+            }
+            catch (SqlException ex)
+            {
+                return ex.Message;
+            }
+            finally
+            {
+                objKonektimi.Close();
+            }
+        }
+
+        [WebMethod]
         public string lexoInstitucionet(string NrInstitucionit)
         {
             return objInstitucionet.lexoInstitucionet(NrInstitucionit);
@@ -167,13 +278,75 @@ namespace Adresat
         [WebMethod]
         public string ktheAdresen(string lat, string lng)
         {
+            string dalja = "";
             XmlDocument doc = new XmlDocument();
-            doc.Load("http://nominatim.openstreetmap.org/reverse?format=xml&lat=" + lat + "&lon=" + lng + "&addressdetails=1");
-            XmlNode nod1 = doc.SelectSingleNode("/reversegeocode/result");
-            return nod1.InnerText;
+            doc.Load("http://nominatim.openstreetmap.org/reverse?format=xml&lat=" + lat + "&lon=" + lng + "&zoom=18&addressdetails=1");
+            try
+            {
+                XmlNode Rruga = doc.SelectSingleNode("/reversegeocode/addressparts/road");
+                dalja = Rruga.InnerText;
+            }
+            catch (Exception)
+            {
+                dalja = "";
+                
+            }
+            try
+            {
+                XmlNode Qyteti = doc.SelectSingleNode("/reversegeocode/addressparts/city");
+                dalja += "Qyteti=>" + Qyteti.InnerText;
+            }
+            catch (Exception)
+            {
+                try
+                {
+                    XmlNode Qyteti = doc.SelectSingleNode("/reversegeocode/addressparts/county");
+                    dalja += "Qyteti=>" + Qyteti.InnerText;
+                }
+                catch (Exception)
+                {
+
+                    dalja += "Qyteti=>";
+                }
+                
+                
+            }
+            try
+            {
+                XmlNode Kodi = doc.SelectSingleNode("/reversegeocode/addressparts/postcode");
+                dalja+="Kodi=>"+Kodi.InnerText;
+            }
+            catch (Exception)
+            {
+                dalja+="Kodi=>";
+            }
+                       
+            return dalja;
         }
 
+        [WebMethod]
+        public string ktheKordinatat(string Query)
+        {
+            Query= Query.Replace(" ","%20");
+            XmlDocument doc = new XmlDocument();
+            doc.Load("http://nominatim.openstreetmap.org/search?q=" + Query + "&format=xml&limit=1&addressdetails=1");
+            XmlNode nod1 = doc.SelectSingleNode("/searchresults/place");
+            try
+            {
+                XmlAttribute Latitude = nod1.Attributes["lat"];
+                XmlAttribute Longitude = nod1.Attributes["lon"];
 
+                return Latitude.InnerText + "Longitude=>" + Longitude.InnerText;
+            }
+            catch (Exception)
+            {
+
+                return "Error";
+            }
+            
+
+        }
+     
         private string gjenerosalt()
         {
             Random objrandom = new Random();
