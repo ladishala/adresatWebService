@@ -18,7 +18,7 @@ namespace Adresat
     /// <summary>
     /// Summary description for Sherbimi
     /// </summary>
-    [WebService(Namespace = "http://tempuri.org/")]
+    [WebService(Namespace = "http://adresat.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
@@ -30,6 +30,113 @@ namespace Adresat
         RegjistriCivil.SherbimiSoapClient objRegjistriCivil = new RegjistriCivil.SherbimiSoapClient();
         Arbk.Sherbimi_ArbkSoapClient objArbk = new Arbk.Sherbimi_ArbkSoapClient();
         Institucionet.Sherbimi_InstitucionetSoapClient objInstitucionet = new Institucionet.Sherbimi_InstitucionetSoapClient();
+
+        [WebMethod]
+        public string kerkoAdrese(string Lloji, string P1, string P2, string P3)
+        {
+            string dalja = "";
+            DataSet ds = new DataSet();
+
+
+            
+            if (Lloji == "Individ")
+            {
+                string emri ="";
+                string mbiemri ="";
+                try
+                {
+                    emri = P1.Substring(0, P1.IndexOf(" "));
+                    mbiemri = P1.Substring(P1.IndexOf(" "));
+                }
+                catch(Exception)
+                {
+                    emri = P1;
+                }
+                ds = objRegjistriCivil.lexoRegjistringCivilQuery(emri,mbiemri,P2,P3);
+            }
+            else if (Lloji == "Biznes")
+            {
+                ds = objArbk.lexoArbkQuery(P1, P2, P3);
+
+            }
+            else if (Lloji == "Institucion")
+            {
+                ds = objInstitucionet.lexoInstitucionetQuery(P1, P2, P3);
+            }
+
+          
+            if (ds.Tables[0].Rows.Count == 0)
+            {
+                dalja = "0";
+            }
+            else if (ds.Tables[0].Rows.Count == 1)
+            {
+                dalja = "1"+ds.Tables[0].Rows[0][0];
+            }
+            else if (ds.Tables[0].Rows.Count > 5)
+            {
+                dalja = "6";
+            }
+            
+          return dalja;
+
+        }
+    
+
+        [WebMethod]
+        public string ndryshoPassword(string Username, string Hash, string Salt)
+        {
+            try
+            {
+                objKonektimi.Open();
+                string query = "Update tblUsers Set Hash='" + Hash + "', Salt='" + Salt + "' Where Username=" + Username;
+                SqlCommand cmd = new SqlCommand(query, objKonektimi);
+                cmd.ExecuteNonQuery();
+
+                return "U ndryshua me sukses";
+
+            }
+            catch (SqlException ex)
+            {
+                return ex.Message;
+            }
+            finally
+            {
+                objKonektimi.Close();
+            }
+        }
+
+        [WebMethod]
+        public string lexoEmail(string Username)
+        {
+            try
+            {
+                objKonektimi.Open();
+                string query = "Select Email from tblUsers Where Username=" + Username;
+                SqlCommand cmd = new SqlCommand(query, objKonektimi);
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                if (dr.HasRows)
+                {
+                    dr.Read();
+                    return dr[0].ToString();
+                }
+                else
+                {
+                    return "Error";
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                return ex.Message;
+
+            }
+            finally
+            {
+                objKonektimi.Close();
+            }
+        }
 
         [WebMethod]
         public string azhuroAdresen(string PerdoruesiID, string Lat, string Lng, string Numri)

@@ -61,12 +61,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Service References\Arbk\Adresat.Arbk.validoNrBiznesitResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\Arbk\Adresat.Arbk.lexoArbkResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
+    <Content Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <None Include="Service References\Arbk\Sherbimi_Arbk.disco" />
     <None Include="Service References\Arbk\configuration91.svcinfo" />
     <None Include="Service References\Arbk\configuration.svcinfo" />
@@ -74,27 +69,15 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Service References\Institucionet\Adresat.Institucionet.lexoInstitucionetResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\Institucionet\Adresat.Institucionet.validoNrInstitucionitResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\Institucionet\Sherbimi_Institucionet.disco" />
-    <Content Include="Service References\Institucionet\configuration91.svcinfo" />
-    <Content Include="Service References\Institucionet\configuration.svcinfo" />
-    <Content Include="Service References\Institucionet\Reference.svcmap">
+    <None Include="Service References\Institucionet\Sherbimi_Institucionet.disco" />
+    <None Include="Service References\Institucionet\configuration91.svcinfo" />
+    <None Include="Service References\Institucionet\configuration.svcinfo" />
+    <None Include="Service References\Institucionet\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
-    <Content Include="Service References\RegjistriCivil\Adresat.RegjistriCivil.lexoRegjistrinCivilResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\RegjistriCivil\Adresat.RegjistriCivil.validoNrPersonalResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
+    </None>
     <None Include="Service References\Arbk\Sherbimi_Arbk.wsdl" />
-    <Content Include="Service References\Institucionet\Sherbimi_Institucionet.wsdl" />
+    <None Include="Service References\Institucionet\Sherbimi_Institucionet.wsdl" />
     <None Include="Service References\RegjistriCivil\Sherbimi_Regjistri.disco" />
     <None Include="Service References\RegjistriCivil\configuration91.svcinfo" />
     <None Include="Service References\RegjistriCivil\configuration.svcinfo" />

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://adresat.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://adresat.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
-    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+    <s:schema elementFormDefault="qualified" targetNamespace="http://adresat.org/">
       <s:element name="validoNrInstitucionit">
         <s:complexType>
           <s:sequence>
@@ -30,6 +30,29 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="lexoInstitucionetQuery">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Emri" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Telefoni" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lloji" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lexoInstitucionetQueryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lexoInstitucionetQueryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="validoNrInstitucionitSoapIn">
@@ -44,6 +67,12 @@
   <wsdl:message name="lexoInstitucionetSoapOut">
     <wsdl:part name="parameters" element="tns:lexoInstitucionetResponse" />
   </wsdl:message>
+  <wsdl:message name="lexoInstitucionetQuerySoapIn">
+    <wsdl:part name="parameters" element="tns:lexoInstitucionetQuery" />
+  </wsdl:message>
+  <wsdl:message name="lexoInstitucionetQuerySoapOut">
+    <wsdl:part name="parameters" element="tns:lexoInstitucionetQueryResponse" />
+  </wsdl:message>
   <wsdl:portType name="Sherbimi_InstitucionetSoap">
     <wsdl:operation name="validoNrInstitucionit">
       <wsdl:input message="tns:validoNrInstitucionitSoapIn" />
@@ -53,11 +82,15 @@
       <wsdl:input message="tns:lexoInstitucionetSoapIn" />
       <wsdl:output message="tns:lexoInstitucionetSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="lexoInstitucionetQuery">
+      <wsdl:input message="tns:lexoInstitucionetQuerySoapIn" />
+      <wsdl:output message="tns:lexoInstitucionetQuerySoapOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Sherbimi_InstitucionetSoap" type="tns:Sherbimi_InstitucionetSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="validoNrInstitucionit">
-      <soap:operation soapAction="http://tempuri.org/validoNrInstitucionit" style="document" />
+      <soap:operation soapAction="http://adresat.org/validoNrInstitucionit" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -66,7 +99,16 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="lexoInstitucionet">
-      <soap:operation soapAction="http://tempuri.org/lexoInstitucionet" style="document" />
+      <soap:operation soapAction="http://adresat.org/lexoInstitucionet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lexoInstitucionetQuery">
+      <soap:operation soapAction="http://adresat.org/lexoInstitucionetQuery" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -78,7 +120,7 @@
   <wsdl:binding name="Sherbimi_InstitucionetSoap12" type="tns:Sherbimi_InstitucionetSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="validoNrInstitucionit">
-      <soap12:operation soapAction="http://tempuri.org/validoNrInstitucionit" style="document" />
+      <soap12:operation soapAction="http://adresat.org/validoNrInstitucionit" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -87,7 +129,16 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="lexoInstitucionet">
-      <soap12:operation soapAction="http://tempuri.org/lexoInstitucionet" style="document" />
+      <soap12:operation soapAction="http://adresat.org/lexoInstitucionet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lexoInstitucionetQuery">
+      <soap12:operation soapAction="http://adresat.org/lexoInstitucionetQuery" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

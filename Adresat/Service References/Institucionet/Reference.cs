@@ -9,161 +9,33 @@
 //------------------------------------------------------------------------------
 
 namespace Adresat.Institucionet {
+    using System.Data;
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Institucionet.Sherbimi_InstitucionetSoap")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://adresat.org/", ConfigurationName="Institucionet.Sherbimi_InstitucionetSoap")]
     public interface Sherbimi_InstitucionetSoap {
         
-        // CODEGEN: Generating message contract since element name NrInstitucionit from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/validoNrInstitucionit", ReplyAction="*")]
-        Adresat.Institucionet.validoNrInstitucionitResponse validoNrInstitucionit(Adresat.Institucionet.validoNrInstitucionitRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://adresat.org/validoNrInstitucionit", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string validoNrInstitucionit(string NrInstitucionit);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/validoNrInstitucionit", ReplyAction="*")]
-        System.Threading.Tasks.Task<Adresat.Institucionet.validoNrInstitucionitResponse> validoNrInstitucionitAsync(Adresat.Institucionet.validoNrInstitucionitRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://adresat.org/validoNrInstitucionit", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> validoNrInstitucionitAsync(string NrInstitucionit);
         
-        // CODEGEN: Generating message contract since element name NrInstitucionit from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lexoInstitucionet", ReplyAction="*")]
-        Adresat.Institucionet.lexoInstitucionetResponse lexoInstitucionet(Adresat.Institucionet.lexoInstitucionetRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://adresat.org/lexoInstitucionet", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string lexoInstitucionet(string NrInstitucionit);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lexoInstitucionet", ReplyAction="*")]
-        System.Threading.Tasks.Task<Adresat.Institucionet.lexoInstitucionetResponse> lexoInstitucionetAsync(Adresat.Institucionet.lexoInstitucionetRequest request);
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class validoNrInstitucionitRequest {
+        [System.ServiceModel.OperationContractAttribute(Action="http://adresat.org/lexoInstitucionet", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> lexoInstitucionetAsync(string NrInstitucionit);
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="validoNrInstitucionit", Namespace="http://tempuri.org/", Order=0)]
-        public Adresat.Institucionet.validoNrInstitucionitRequestBody Body;
+        [System.ServiceModel.OperationContractAttribute(Action="http://adresat.org/lexoInstitucionetQuery", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet lexoInstitucionetQuery(string Emri, string Telefoni, string Lloji);
         
-        public validoNrInstitucionitRequest() {
-        }
-        
-        public validoNrInstitucionitRequest(Adresat.Institucionet.validoNrInstitucionitRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class validoNrInstitucionitRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string NrInstitucionit;
-        
-        public validoNrInstitucionitRequestBody() {
-        }
-        
-        public validoNrInstitucionitRequestBody(string NrInstitucionit) {
-            this.NrInstitucionit = NrInstitucionit;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class validoNrInstitucionitResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="validoNrInstitucionitResponse", Namespace="http://tempuri.org/", Order=0)]
-        public Adresat.Institucionet.validoNrInstitucionitResponseBody Body;
-        
-        public validoNrInstitucionitResponse() {
-        }
-        
-        public validoNrInstitucionitResponse(Adresat.Institucionet.validoNrInstitucionitResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class validoNrInstitucionitResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string validoNrInstitucionitResult;
-        
-        public validoNrInstitucionitResponseBody() {
-        }
-        
-        public validoNrInstitucionitResponseBody(string validoNrInstitucionitResult) {
-            this.validoNrInstitucionitResult = validoNrInstitucionitResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class lexoInstitucionetRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="lexoInstitucionet", Namespace="http://tempuri.org/", Order=0)]
-        public Adresat.Institucionet.lexoInstitucionetRequestBody Body;
-        
-        public lexoInstitucionetRequest() {
-        }
-        
-        public lexoInstitucionetRequest(Adresat.Institucionet.lexoInstitucionetRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class lexoInstitucionetRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string NrInstitucionit;
-        
-        public lexoInstitucionetRequestBody() {
-        }
-        
-        public lexoInstitucionetRequestBody(string NrInstitucionit) {
-            this.NrInstitucionit = NrInstitucionit;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class lexoInstitucionetResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="lexoInstitucionetResponse", Namespace="http://tempuri.org/", Order=0)]
-        public Adresat.Institucionet.lexoInstitucionetResponseBody Body;
-        
-        public lexoInstitucionetResponse() {
-        }
-        
-        public lexoInstitucionetResponse(Adresat.Institucionet.lexoInstitucionetResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class lexoInstitucionetResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string lexoInstitucionetResult;
-        
-        public lexoInstitucionetResponseBody() {
-        }
-        
-        public lexoInstitucionetResponseBody(string lexoInstitucionetResult) {
-            this.lexoInstitucionetResult = lexoInstitucionetResult;
-        }
+        [System.ServiceModel.OperationContractAttribute(Action="http://adresat.org/lexoInstitucionetQuery", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> lexoInstitucionetQueryAsync(string Emri, string Telefoni, string Lloji);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -193,54 +65,28 @@ namespace Adresat.Institucionet {
                 base(binding, remoteAddress) {
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Adresat.Institucionet.validoNrInstitucionitResponse Adresat.Institucionet.Sherbimi_InstitucionetSoap.validoNrInstitucionit(Adresat.Institucionet.validoNrInstitucionitRequest request) {
-            return base.Channel.validoNrInstitucionit(request);
-        }
-        
         public string validoNrInstitucionit(string NrInstitucionit) {
-            Adresat.Institucionet.validoNrInstitucionitRequest inValue = new Adresat.Institucionet.validoNrInstitucionitRequest();
-            inValue.Body = new Adresat.Institucionet.validoNrInstitucionitRequestBody();
-            inValue.Body.NrInstitucionit = NrInstitucionit;
-            Adresat.Institucionet.validoNrInstitucionitResponse retVal = ((Adresat.Institucionet.Sherbimi_InstitucionetSoap)(this)).validoNrInstitucionit(inValue);
-            return retVal.Body.validoNrInstitucionitResult;
+            return base.Channel.validoNrInstitucionit(NrInstitucionit);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Adresat.Institucionet.validoNrInstitucionitResponse> Adresat.Institucionet.Sherbimi_InstitucionetSoap.validoNrInstitucionitAsync(Adresat.Institucionet.validoNrInstitucionitRequest request) {
-            return base.Channel.validoNrInstitucionitAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<Adresat.Institucionet.validoNrInstitucionitResponse> validoNrInstitucionitAsync(string NrInstitucionit) {
-            Adresat.Institucionet.validoNrInstitucionitRequest inValue = new Adresat.Institucionet.validoNrInstitucionitRequest();
-            inValue.Body = new Adresat.Institucionet.validoNrInstitucionitRequestBody();
-            inValue.Body.NrInstitucionit = NrInstitucionit;
-            return ((Adresat.Institucionet.Sherbimi_InstitucionetSoap)(this)).validoNrInstitucionitAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Adresat.Institucionet.lexoInstitucionetResponse Adresat.Institucionet.Sherbimi_InstitucionetSoap.lexoInstitucionet(Adresat.Institucionet.lexoInstitucionetRequest request) {
-            return base.Channel.lexoInstitucionet(request);
+        public System.Threading.Tasks.Task<string> validoNrInstitucionitAsync(string NrInstitucionit) {
+            return base.Channel.validoNrInstitucionitAsync(NrInstitucionit);
         }
         
         public string lexoInstitucionet(string NrInstitucionit) {
-            Adresat.Institucionet.lexoInstitucionetRequest inValue = new Adresat.Institucionet.lexoInstitucionetRequest();
-            inValue.Body = new Adresat.Institucionet.lexoInstitucionetRequestBody();
-            inValue.Body.NrInstitucionit = NrInstitucionit;
-            Adresat.Institucionet.lexoInstitucionetResponse retVal = ((Adresat.Institucionet.Sherbimi_InstitucionetSoap)(this)).lexoInstitucionet(inValue);
-            return retVal.Body.lexoInstitucionetResult;
+            return base.Channel.lexoInstitucionet(NrInstitucionit);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Adresat.Institucionet.lexoInstitucionetResponse> Adresat.Institucionet.Sherbimi_InstitucionetSoap.lexoInstitucionetAsync(Adresat.Institucionet.lexoInstitucionetRequest request) {
-            return base.Channel.lexoInstitucionetAsync(request);
+        public System.Threading.Tasks.Task<string> lexoInstitucionetAsync(string NrInstitucionit) {
+            return base.Channel.lexoInstitucionetAsync(NrInstitucionit);
         }
         
-        public System.Threading.Tasks.Task<Adresat.Institucionet.lexoInstitucionetResponse> lexoInstitucionetAsync(string NrInstitucionit) {
-            Adresat.Institucionet.lexoInstitucionetRequest inValue = new Adresat.Institucionet.lexoInstitucionetRequest();
-            inValue.Body = new Adresat.Institucionet.lexoInstitucionetRequestBody();
-            inValue.Body.NrInstitucionit = NrInstitucionit;
-            return ((Adresat.Institucionet.Sherbimi_InstitucionetSoap)(this)).lexoInstitucionetAsync(inValue);
+        public System.Data.DataSet lexoInstitucionetQuery(string Emri, string Telefoni, string Lloji) {
+            return base.Channel.lexoInstitucionetQuery(Emri, Telefoni, Lloji);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> lexoInstitucionetQueryAsync(string Emri, string Telefoni, string Lloji) {
+            return base.Channel.lexoInstitucionetQueryAsync(Emri, Telefoni, Lloji);
         }
     }
 }

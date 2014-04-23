@@ -9,161 +9,33 @@
 //------------------------------------------------------------------------------
 
 namespace Adresat.RegjistriCivil {
+    using System.Data;
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RegjistriCivil.SherbimiSoap")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://adresat.org/", ConfigurationName="RegjistriCivil.SherbimiSoap")]
     public interface SherbimiSoap {
         
-        // CODEGEN: Generating message contract since element name NrPersonal from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/validoNrPersonal", ReplyAction="*")]
-        Adresat.RegjistriCivil.validoNrPersonalResponse validoNrPersonal(Adresat.RegjistriCivil.validoNrPersonalRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://adresat.org/validoNrPersonal", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string validoNrPersonal(string NrPersonal);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/validoNrPersonal", ReplyAction="*")]
-        System.Threading.Tasks.Task<Adresat.RegjistriCivil.validoNrPersonalResponse> validoNrPersonalAsync(Adresat.RegjistriCivil.validoNrPersonalRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://adresat.org/validoNrPersonal", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> validoNrPersonalAsync(string NrPersonal);
         
-        // CODEGEN: Generating message contract since element name NrPersonal from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lexoRegjistrinCivil", ReplyAction="*")]
-        Adresat.RegjistriCivil.lexoRegjistrinCivilResponse lexoRegjistrinCivil(Adresat.RegjistriCivil.lexoRegjistrinCivilRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://adresat.org/lexoRegjistrinCivil", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string lexoRegjistrinCivil(string NrPersonal);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/lexoRegjistrinCivil", ReplyAction="*")]
-        System.Threading.Tasks.Task<Adresat.RegjistriCivil.lexoRegjistrinCivilResponse> lexoRegjistrinCivilAsync(Adresat.RegjistriCivil.lexoRegjistrinCivilRequest request);
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class validoNrPersonalRequest {
+        [System.ServiceModel.OperationContractAttribute(Action="http://adresat.org/lexoRegjistrinCivil", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> lexoRegjistrinCivilAsync(string NrPersonal);
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="validoNrPersonal", Namespace="http://tempuri.org/", Order=0)]
-        public Adresat.RegjistriCivil.validoNrPersonalRequestBody Body;
+        [System.ServiceModel.OperationContractAttribute(Action="http://adresat.org/lexoRegjistringCivilQuery", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet lexoRegjistringCivilQuery(string Emri, string Mbiemri, string DataLindjes, string VendiLindjes);
         
-        public validoNrPersonalRequest() {
-        }
-        
-        public validoNrPersonalRequest(Adresat.RegjistriCivil.validoNrPersonalRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class validoNrPersonalRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string NrPersonal;
-        
-        public validoNrPersonalRequestBody() {
-        }
-        
-        public validoNrPersonalRequestBody(string NrPersonal) {
-            this.NrPersonal = NrPersonal;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class validoNrPersonalResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="validoNrPersonalResponse", Namespace="http://tempuri.org/", Order=0)]
-        public Adresat.RegjistriCivil.validoNrPersonalResponseBody Body;
-        
-        public validoNrPersonalResponse() {
-        }
-        
-        public validoNrPersonalResponse(Adresat.RegjistriCivil.validoNrPersonalResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class validoNrPersonalResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string validoNrPersonalResult;
-        
-        public validoNrPersonalResponseBody() {
-        }
-        
-        public validoNrPersonalResponseBody(string validoNrPersonalResult) {
-            this.validoNrPersonalResult = validoNrPersonalResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class lexoRegjistrinCivilRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="lexoRegjistrinCivil", Namespace="http://tempuri.org/", Order=0)]
-        public Adresat.RegjistriCivil.lexoRegjistrinCivilRequestBody Body;
-        
-        public lexoRegjistrinCivilRequest() {
-        }
-        
-        public lexoRegjistrinCivilRequest(Adresat.RegjistriCivil.lexoRegjistrinCivilRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class lexoRegjistrinCivilRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string NrPersonal;
-        
-        public lexoRegjistrinCivilRequestBody() {
-        }
-        
-        public lexoRegjistrinCivilRequestBody(string NrPersonal) {
-            this.NrPersonal = NrPersonal;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class lexoRegjistrinCivilResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="lexoRegjistrinCivilResponse", Namespace="http://tempuri.org/", Order=0)]
-        public Adresat.RegjistriCivil.lexoRegjistrinCivilResponseBody Body;
-        
-        public lexoRegjistrinCivilResponse() {
-        }
-        
-        public lexoRegjistrinCivilResponse(Adresat.RegjistriCivil.lexoRegjistrinCivilResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class lexoRegjistrinCivilResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string lexoRegjistrinCivilResult;
-        
-        public lexoRegjistrinCivilResponseBody() {
-        }
-        
-        public lexoRegjistrinCivilResponseBody(string lexoRegjistrinCivilResult) {
-            this.lexoRegjistrinCivilResult = lexoRegjistrinCivilResult;
-        }
+        [System.ServiceModel.OperationContractAttribute(Action="http://adresat.org/lexoRegjistringCivilQuery", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> lexoRegjistringCivilQueryAsync(string Emri, string Mbiemri, string DataLindjes, string VendiLindjes);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -193,54 +65,28 @@ namespace Adresat.RegjistriCivil {
                 base(binding, remoteAddress) {
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Adresat.RegjistriCivil.validoNrPersonalResponse Adresat.RegjistriCivil.SherbimiSoap.validoNrPersonal(Adresat.RegjistriCivil.validoNrPersonalRequest request) {
-            return base.Channel.validoNrPersonal(request);
-        }
-        
         public string validoNrPersonal(string NrPersonal) {
-            Adresat.RegjistriCivil.validoNrPersonalRequest inValue = new Adresat.RegjistriCivil.validoNrPersonalRequest();
-            inValue.Body = new Adresat.RegjistriCivil.validoNrPersonalRequestBody();
-            inValue.Body.NrPersonal = NrPersonal;
-            Adresat.RegjistriCivil.validoNrPersonalResponse retVal = ((Adresat.RegjistriCivil.SherbimiSoap)(this)).validoNrPersonal(inValue);
-            return retVal.Body.validoNrPersonalResult;
+            return base.Channel.validoNrPersonal(NrPersonal);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Adresat.RegjistriCivil.validoNrPersonalResponse> Adresat.RegjistriCivil.SherbimiSoap.validoNrPersonalAsync(Adresat.RegjistriCivil.validoNrPersonalRequest request) {
-            return base.Channel.validoNrPersonalAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<Adresat.RegjistriCivil.validoNrPersonalResponse> validoNrPersonalAsync(string NrPersonal) {
-            Adresat.RegjistriCivil.validoNrPersonalRequest inValue = new Adresat.RegjistriCivil.validoNrPersonalRequest();
-            inValue.Body = new Adresat.RegjistriCivil.validoNrPersonalRequestBody();
-            inValue.Body.NrPersonal = NrPersonal;
-            return ((Adresat.RegjistriCivil.SherbimiSoap)(this)).validoNrPersonalAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Adresat.RegjistriCivil.lexoRegjistrinCivilResponse Adresat.RegjistriCivil.SherbimiSoap.lexoRegjistrinCivil(Adresat.RegjistriCivil.lexoRegjistrinCivilRequest request) {
-            return base.Channel.lexoRegjistrinCivil(request);
+        public System.Threading.Tasks.Task<string> validoNrPersonalAsync(string NrPersonal) {
+            return base.Channel.validoNrPersonalAsync(NrPersonal);
         }
         
         public string lexoRegjistrinCivil(string NrPersonal) {
-            Adresat.RegjistriCivil.lexoRegjistrinCivilRequest inValue = new Adresat.RegjistriCivil.lexoRegjistrinCivilRequest();
-            inValue.Body = new Adresat.RegjistriCivil.lexoRegjistrinCivilRequestBody();
-            inValue.Body.NrPersonal = NrPersonal;
-            Adresat.RegjistriCivil.lexoRegjistrinCivilResponse retVal = ((Adresat.RegjistriCivil.SherbimiSoap)(this)).lexoRegjistrinCivil(inValue);
-            return retVal.Body.lexoRegjistrinCivilResult;
+            return base.Channel.lexoRegjistrinCivil(NrPersonal);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Adresat.RegjistriCivil.lexoRegjistrinCivilResponse> Adresat.RegjistriCivil.SherbimiSoap.lexoRegjistrinCivilAsync(Adresat.RegjistriCivil.lexoRegjistrinCivilRequest request) {
-            return base.Channel.lexoRegjistrinCivilAsync(request);
+        public System.Threading.Tasks.Task<string> lexoRegjistrinCivilAsync(string NrPersonal) {
+            return base.Channel.lexoRegjistrinCivilAsync(NrPersonal);
         }
         
-        public System.Threading.Tasks.Task<Adresat.RegjistriCivil.lexoRegjistrinCivilResponse> lexoRegjistrinCivilAsync(string NrPersonal) {
-            Adresat.RegjistriCivil.lexoRegjistrinCivilRequest inValue = new Adresat.RegjistriCivil.lexoRegjistrinCivilRequest();
-            inValue.Body = new Adresat.RegjistriCivil.lexoRegjistrinCivilRequestBody();
-            inValue.Body.NrPersonal = NrPersonal;
-            return ((Adresat.RegjistriCivil.SherbimiSoap)(this)).lexoRegjistrinCivilAsync(inValue);
+        public System.Data.DataSet lexoRegjistringCivilQuery(string Emri, string Mbiemri, string DataLindjes, string VendiLindjes) {
+            return base.Channel.lexoRegjistringCivilQuery(Emri, Mbiemri, DataLindjes, VendiLindjes);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> lexoRegjistringCivilQueryAsync(string Emri, string Mbiemri, string DataLindjes, string VendiLindjes) {
+            return base.Channel.lexoRegjistringCivilQueryAsync(Emri, Mbiemri, DataLindjes, VendiLindjes);
         }
     }
 }

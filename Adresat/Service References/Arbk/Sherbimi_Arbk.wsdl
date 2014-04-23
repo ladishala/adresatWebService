@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://adresat.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://adresat.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
-    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+    <s:schema elementFormDefault="qualified" targetNamespace="http://adresat.org/">
       <s:element name="validoNrBiznesit">
         <s:complexType>
           <s:sequence>
@@ -30,6 +30,29 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="lexoArbkQuery">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Emri" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NrLeternjoftimit" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AktivitetiKryesor" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lexoArbkQueryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lexoArbkQueryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="validoNrBiznesitSoapIn">
@@ -44,6 +67,12 @@
   <wsdl:message name="lexoArbkSoapOut">
     <wsdl:part name="parameters" element="tns:lexoArbkResponse" />
   </wsdl:message>
+  <wsdl:message name="lexoArbkQuerySoapIn">
+    <wsdl:part name="parameters" element="tns:lexoArbkQuery" />
+  </wsdl:message>
+  <wsdl:message name="lexoArbkQuerySoapOut">
+    <wsdl:part name="parameters" element="tns:lexoArbkQueryResponse" />
+  </wsdl:message>
   <wsdl:portType name="Sherbimi_ArbkSoap">
     <wsdl:operation name="validoNrBiznesit">
       <wsdl:input message="tns:validoNrBiznesitSoapIn" />
@@ -53,11 +82,15 @@
       <wsdl:input message="tns:lexoArbkSoapIn" />
       <wsdl:output message="tns:lexoArbkSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="lexoArbkQuery">
+      <wsdl:input message="tns:lexoArbkQuerySoapIn" />
+      <wsdl:output message="tns:lexoArbkQuerySoapOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Sherbimi_ArbkSoap" type="tns:Sherbimi_ArbkSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="validoNrBiznesit">
-      <soap:operation soapAction="http://tempuri.org/validoNrBiznesit" style="document" />
+      <soap:operation soapAction="http://adresat.org/validoNrBiznesit" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -66,7 +99,16 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="lexoArbk">
-      <soap:operation soapAction="http://tempuri.org/lexoArbk" style="document" />
+      <soap:operation soapAction="http://adresat.org/lexoArbk" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lexoArbkQuery">
+      <soap:operation soapAction="http://adresat.org/lexoArbkQuery" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -78,7 +120,7 @@
   <wsdl:binding name="Sherbimi_ArbkSoap12" type="tns:Sherbimi_ArbkSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="validoNrBiznesit">
-      <soap12:operation soapAction="http://tempuri.org/validoNrBiznesit" style="document" />
+      <soap12:operation soapAction="http://adresat.org/validoNrBiznesit" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -87,7 +129,16 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="lexoArbk">
-      <soap12:operation soapAction="http://tempuri.org/lexoArbk" style="document" />
+      <soap12:operation soapAction="http://adresat.org/lexoArbk" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lexoArbkQuery">
+      <soap12:operation soapAction="http://adresat.org/lexoArbkQuery" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
