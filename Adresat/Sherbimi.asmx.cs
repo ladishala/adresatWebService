@@ -46,13 +46,13 @@ namespace Adresat
                 try
                 {
                     emri = P1.Substring(0, P1.IndexOf(" "));
-                    mbiemri = P1.Substring(P1.IndexOf(" "));
+                    mbiemri = P1.Substring(P1.IndexOf(" ")+1,P1.Length-P1.IndexOf(" ")-1);
                 }
                 catch(Exception)
                 {
                     emri = P1;
                 }
-                ds = objRegjistriCivil.lexoRegjistringCivilQuery(emri,mbiemri,P2,P3);
+               ds = objRegjistriCivil.lexoRegjistringCivilQuery(emri,mbiemri,P2,P3);
             }
             else if (Lloji == "Biznes")
             {
