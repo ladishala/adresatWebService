@@ -77,7 +77,49 @@ namespace Adresat
             {
                 dalja = "6";
             }
-            
+            else if (ds.Tables[0].Rows.Count <= 5 && ds.Tables[0].Rows.Count >= 2)
+            {
+                List<string> lista = new List<string>();
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    if(validoRegjistrimin(ds.Tables[0].Rows[i][0].ToString())=="True")
+                    {
+                        lista.Add(ds.Tables[0].Rows[i][0].ToString());
+                    }
+                }
+                if (lista.Count == 1)
+                {
+                    dalja = "1" + lista[0];
+                }
+                else if (lista.Count == 0)
+                {
+                    dalja = "0";
+                }
+                else
+                {
+                    List<string> listaTeDhenat = new List<string>();
+                    foreach (string antari in lista)
+                    {
+                        if (antari.Length == 10)
+                        {
+                            listaTeDhenat.Add(antari);
+                            listaTeDhenat.Add(lexoRegjistrinCivil(antari));
+                        }
+                        else if (antari.Length == 8)
+                        {
+                            listaTeDhenat.Add(lexoArbk(antari));
+                        }
+                        else if (antari.Length == 9)
+                        {
+                            listaTeDhenat.Add(lexoInstitucionet(antari));
+                        }
+                    }
+                    string[] stringu = listaTeDhenat.ToArray();
+                    dalja = listaTeDhenat.Count.ToString()+String.Join("--->", listaTeDhenat);
+                  
+                }
+
+            }
           return dalja;
 
         }
